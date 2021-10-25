@@ -42427,6 +42427,8 @@ MonoBehaviour:
   - {fileID: 1670464851}
   - {fileID: 1758984626}
   cameraText: {fileID: 583938193}
+  timeText: {fileID: 415861378}
+  timeRate: 1
 --- !u!4 &2099273631
 Transform:
   m_ObjectHideFlags: 0

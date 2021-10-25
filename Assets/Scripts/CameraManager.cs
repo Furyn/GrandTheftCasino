@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private float timeRate = 1;
 
+
     void Update()
     {
         float milliseconds = Time.deltaTime * 1000 * timeRate;
