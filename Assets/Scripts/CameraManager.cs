@@ -14,8 +14,20 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private GameObject cameraText;
 
+    [SerializeField]
+    private GameObject timeText;
+
+    public System.TimeSpan timeSpan = new System.TimeSpan(0,0,0,0,0);
+
+    [SerializeField]
+    private float timeRate = 1;
+
     void Update()
     {
+        float milliseconds = Time.deltaTime * 1000 * timeRate;
+        timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
+
+        timeText.GetComponentInChildren<TextMeshProUGUI>().text = timeSpan.ToString();
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
             SelectNextCamera();
