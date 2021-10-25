@@ -45,12 +45,12 @@ public class CameraManager : MonoBehaviour
         if (actualCamera == cameras.Length - 1)
         {
             actualCamera = 0;
-            Debug.Log(actualCamera);
+            //Debug.Log(actualCamera);
         }
         else
         {
             actualCamera = actualCamera + 1;
-            Debug.Log(actualCamera);
+            //Debug.Log(actualCamera);
         }
 
         cameras[actualCamera].enabled = true;
@@ -64,12 +64,12 @@ public class CameraManager : MonoBehaviour
         if (actualCamera <= 0)
         {
             actualCamera = cameras.Length - 1;
-            Debug.Log(actualCamera);
+            //Debug.Log(actualCamera);
         }
         else
         {
             actualCamera = actualCamera - 1;
-            Debug.Log(actualCamera);
+            //Debug.Log(actualCamera);
         }
 
         cameras[actualCamera].enabled = true;
