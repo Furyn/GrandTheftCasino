@@ -11542,7 +11542,7 @@ GameObject:
   - component: {fileID: 565146472}
   - component: {fileID: 565146474}
   m_Layer: 0
-  m_Name: Camera X
+  m_Name: Camera 8
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11611,7 +11611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 15.706, y: -183.951, z: 0.703}
 --- !u!114 &565146474
 MonoBehaviour:
@@ -13897,7 +13897,7 @@ GameObject:
   - component: {fileID: 639116449}
   - component: {fileID: 639116448}
   m_Layer: 0
-  m_Name: Camera 6
+  m_Name: Camera 5
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14026,7 +14026,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 32.248, y: 38.609, z: 3.573}
 --- !u!1001 &652877153
 PrefabInstance:
@@ -32813,7 +32813,7 @@ GameObject:
   - component: {fileID: 1568979739}
   - component: {fileID: 1568979738}
   m_Layer: 0
-  m_Name: Camera 7
+  m_Name: Camera 6
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32942,7 +32942,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 23.748, y: -173.696, z: 3.483}
 --- !u!1 &1576698061
 GameObject:
@@ -34739,7 +34739,7 @@ GameObject:
   - component: {fileID: 1670464853}
   - component: {fileID: 1670464852}
   m_Layer: 0
-  m_Name: Camera 4
+  m_Name: Camera 3
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34868,7 +34868,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 26.838, y: 319.228, z: -2.117}
 --- !u!1001 &1696770978
 PrefabInstance:
@@ -36803,7 +36803,7 @@ GameObject:
   - component: {fileID: 1758984628}
   - component: {fileID: 1758984627}
   m_Layer: 0
-  m_Name: Camera 5
+  m_Name: Camera 4
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36932,7 +36932,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 38.046, y: 281.587, z: -1.477}
 --- !u!1 &1759635127
 GameObject:
@@ -40179,7 +40179,7 @@ GameObject:
   - component: {fileID: 1964283812}
   - component: {fileID: 1964283811}
   m_Layer: 0
-  m_Name: Camera 8
+  m_Name: Camera 7
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40308,7 +40308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2099273631}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 26.01, y: -62.051, z: 5.411}
 --- !u!43 &1969202107
 Mesh:
@@ -42216,12 +42216,12 @@ Transform:
   - {fileID: 1235950288}
   - {fileID: 1807436512}
   - {fileID: 394358213}
-  - {fileID: 565146473}
   - {fileID: 1670464854}
   - {fileID: 1758984629}
   - {fileID: 639116450}
   - {fileID: 1568979740}
   - {fileID: 1964283813}
+  - {fileID: 565146473}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
