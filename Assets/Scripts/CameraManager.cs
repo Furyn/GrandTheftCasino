@@ -25,6 +25,7 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        //Debug.Log(actualCamera);
         float milliseconds = Time.deltaTime * 1000 * timeRate;
         timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
 
