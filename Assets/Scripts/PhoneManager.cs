@@ -6,29 +6,12 @@ using UnityEngine;
 
 public class PhoneManager : MonoBehaviour
 {
-
     public string gt;
 
-    [Serializable]
-    public class PhoneInfo
-    {
-        public GameObject PhoneObject;
-      //  public int PhoneNumber;
-        public string PhoneNumberString;
-    }
-
-    [SerializeField] public PhoneInfo[] spawnPhoneInfo;
-
-    
-
-    void Start()
-    {
-       // gt = GetComponent<string>();
-    }
+    [SerializeField] public Phone[] spawnPhoneInfo;
 
     void Update()
     {
-
          if (gt.Length == 3) // enter/return
         {
             print("le numero appelé est " + gt);
@@ -56,20 +39,16 @@ public class PhoneManager : MonoBehaviour
     {
         if (spawnPhoneInfo.Length != 0)
         {
-            foreach (PhoneInfo PhoneCheck in spawnPhoneInfo)
+            foreach (Phone phoneCheck in spawnPhoneInfo)
             {
-                if(PhoneCheck.PhoneNumberString == Number)
+                if(phoneCheck.PhoneNumberString == Number)
                 {
-                    Debug.Log("tu as appelé le phone : " + PhoneCheck.PhoneObject);
-                    PhoneCheck.PhoneObject.transform.localScale = new Vector3(2, 2, 2);
+                    phoneCheck.isDringDring = true;
+                    Debug.Log("tu as appelé le phone : " + phoneCheck.gameObject.name);
                 }
-                //Debug.Log(repl.PhoneNumberString + " " + repl.PhoneObject);
             }
 
         }
-            //Debug.Log("la taille de spawn info est "+spawnPhoneInfo.); 
-
-
         Debug.Log("j'ai call le numero" + Number);
     }
 

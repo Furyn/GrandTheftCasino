@@ -154,12 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gt: 
   spawnPhoneInfo:
-  - PhoneObject: {fileID: 1049689403}
-    PhoneNumberString: 123
-  - PhoneObject: {fileID: 1936537054}
-    PhoneNumberString: 589
-  - PhoneObject: {fileID: 1743653447}
-    PhoneNumberString: 785
+  - {fileID: 1049689404}
+  - {fileID: 1936537055}
+  - {fileID: 1743653448}
 --- !u!4 &266151588
 Transform:
   m_ObjectHideFlags: 0
@@ -355,6 +352,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2990541432727941116, guid: 59f0806648104b9449d056e7b6097d61, type: 3}
   m_PrefabInstance: {fileID: 2990541432483664583}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1049689404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049689403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 123
 --- !u!1 &1312800639
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +536,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2990541432727941116, guid: 59f0806648104b9449d056e7b6097d61, type: 3}
   m_PrefabInstance: {fileID: 1743653446}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1743653448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743653447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 789
 --- !u!1 &1745913263
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990541432727941112, guid: 59f0806648104b9449d056e7b6097d61, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.33
       objectReference: {fileID: 0}
     - target: {fileID: 2990541432727941112, guid: 59f0806648104b9449d056e7b6097d61, type: 3}
       propertyPath: m_LocalPosition.y
@@ -738,6 +763,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2990541432727941116, guid: 59f0806648104b9449d056e7b6097d61, type: 3}
   m_PrefabInstance: {fileID: 1936537053}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1936537055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936537054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 456
 --- !u!1001 &2990541432483664583
 PrefabInstance:
   m_ObjectHideFlags: 0
