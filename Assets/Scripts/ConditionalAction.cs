@@ -5,7 +5,7 @@ using UnityEngine;
 public class ConditionalAction : Action
 {
     GameObject condition;
-    override public void performAction(GameObject player)
+    override public void PerformAction(GameObject player)
     {
 
     }

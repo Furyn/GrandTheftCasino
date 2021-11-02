@@ -5,7 +5,7 @@ using UnityEngine;
 public class TimeAction : Action
 {
     float timeToWait;
-    override public void performAction(GameObject player)
+    override public void PerformAction(GameObject player)
     {
 
     }

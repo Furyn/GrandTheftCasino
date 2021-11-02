@@ -13,35 +13,36 @@ public class ActionsManager : MonoBehaviour
     void Start()
     {
         isInAction = false;
-        performAction(actions[0]);
+        PerformAction(actions[0]);
     }
 
     void Update()
     {
-        isInAction = !actions[actualActionIndex].getActionDone();
+        isInAction = !actions[actualActionIndex].GetActionDone();
         if(!isInAction)
         {
             actualActionIndex++;
-            performAction(actions[actualActionIndex]);
+            
         }
+        PerformAction(actions[actualActionIndex]);
     }
 
-    void checkIfActionIsPossible(Action actionToPerform)
+    void CheckIfActionIsPossible(Action actionToPerform)
     {
-        canPerformAction = actionToPerform.getCanBePerformed();
+        canPerformAction = actionToPerform.GetCanBePerformed();
     }
 
-    void performAction(Action actionToPerform)
+    void PerformAction(Action actionToPerform)
     {
         if (!isInAction)
         {
             isInAction = true;
-            if (canPerformAction) actionToPerform.performAction(player);
-            else goBackToBeginning();
+            if (canPerformAction) actionToPerform.PerformAction(player);
+            else GoBackToBeginning();
         }
     }
 
-    void goBackToBeginning()
+    void GoBackToBeginning()
     {
         
     }

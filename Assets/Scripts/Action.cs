@@ -6,14 +6,14 @@ public abstract class Action : MonoBehaviour
 {
     protected bool canBePerformed;
     protected bool actionDone;
-    public abstract void performAction(GameObject player);
+    public abstract void PerformAction(GameObject player);
 
-    public bool getCanBePerformed()
+    public bool GetCanBePerformed()
     {
         return canBePerformed;
     }
 
-    public bool getActionDone()
+    public bool GetActionDone()
     {
         return actionDone;
     }

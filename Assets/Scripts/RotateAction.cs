@@ -5,7 +5,7 @@ using UnityEngine;
 public class RotateAction : Action
 {
     float rotateValue;
-    override public void performAction(GameObject player)
+    override public void PerformAction(GameObject player)
     {
 
     }
