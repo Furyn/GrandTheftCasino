@@ -6,8 +6,9 @@ public class Phone : MonoBehaviour
 {
     public bool isDringDring = false;
     public string PhoneNumberString = "";
+    [SerializeField] private float _duration = 10f;
     private float _timer = 0f;
-    private float _duration = 10f;
+    private bool _startBlaBla = false;
 
     private void Update()
     {
@@ -19,13 +20,42 @@ public class Phone : MonoBehaviour
             //Play SFX
             //Play Phone Anim
 
-            if (_timer >= _duration)
+            if (_timer >= _duration && !_startBlaBla)
+                StopDringDring();
+
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                isDringDring = false;
-                _timer = 0f;
-                transform.rotation = Quaternion.Euler(Vector3.zero);
+                OnAllo();
+                _startBlaBla = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                StopBlaBla();
+                _startBlaBla = false;
             }
         }
+    }
+
+    public void OnAllo()
+    {
+        StopDringDring();
+        //Active Reco Vocal
+        //stopMouvement
+    }
+
+    public void StopBlaBla()
+    {
+        //Desactive Reco Vocal
+        //reactive mouvement
+    }
+
+    public void StopDringDring()
+    {
+        PhoneManager.instance.onePhoneDringDring = false;
+        isDringDring = false;
+        _timer = 0f;
+        transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     IEnumerator Rotator()
