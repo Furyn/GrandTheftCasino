@@ -23,6 +23,77 @@ public class CameraManager : MonoBehaviour
     private float timeRate = 1;
 
 
+    private void Update()
+    {
+
+        float milliseconds = Time.deltaTime * 1000 * timeRate;
+        timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
+
+        timeText.GetComponentInChildren<TextMeshProUGUI>().text = timeSpan.ToString();
+
+        // Fait par DOV
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            ChangeCamera(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            ChangeCamera(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            ChangeCamera(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            ChangeCamera(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            ChangeCamera(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            ChangeCamera(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            ChangeCamera(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad8))
+        {
+            ChangeCamera(8);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            ChangeCamera(9);
+        }
+        //if (Input.GetKeyDown(KeyCode.Keypad0))
+        //{
+          //  ChangeCamera(0);
+        //}
+
+        cameraText.GetComponentInChildren<TextMeshProUGUI>().text = "CAM. " + (actualCamera + 1);
+
+    }
+
+    private void ChangeCamera(int cameraToChange)
+    {
+        if((cameraToChange - 1) == -1 )
+        {
+            Debug.Log("ahah je vous ai bien niqué");
+        }
+        Debug.Log("C'est la camera " + cameraToChange);
+        cameras[actualCamera].enabled = false;
+        actualCamera = cameraToChange  - 1;
+        cameras[actualCamera].enabled = true;
+    }
+
+
+
+
+
+    /* OLD CODE
     void Update()
     {
         //Debug.Log(actualCamera);
@@ -74,5 +145,5 @@ public class CameraManager : MonoBehaviour
         }
 
         cameras[actualCamera].enabled = true;
-    }
+    }*/
 }
