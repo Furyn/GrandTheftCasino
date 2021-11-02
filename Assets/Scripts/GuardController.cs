@@ -47,7 +47,7 @@ public class GuardController : MonoBehaviour
             foreach (Phone phone in phoneManager.spawnPhoneInfo)
             {
                 float distance = Vector3.Distance(phone.transform.position, agent.gameObject.transform.position);
-                if (distance_trigger_phone > distance) // && phone.isDringDring
+                if (distance_trigger_phone > distance && phone.isDringDring)
                 {
                     agent.SetDestination(phone.transform.position);
                     timer_on_phone = wait_on_phone;
