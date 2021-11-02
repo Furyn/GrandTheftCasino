@@ -55,7 +55,7 @@ public class RecognitionVoice : MonoBehaviour
             }
 
             if (sub == "bas")
-            {
+            {   
                 transform.Translate(0, -1, 0);
                 Debug.Log("tu as dis bas");
             }
