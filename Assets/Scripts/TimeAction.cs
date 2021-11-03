@@ -14,7 +14,6 @@ public class TimeAction : Action
 
     void setTime(float value)
     {
-        
         timeToWait = value;
     }
 

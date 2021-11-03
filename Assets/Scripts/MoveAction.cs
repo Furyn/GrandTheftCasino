@@ -11,7 +11,7 @@ public class MoveAction : Action
     
     override public void PerformAction(GameObject player)
     {
-        Vector3.MoveTowards(player.transform.position, spot.transform.position, 0.2f);
+        Vector3.MoveTowards(player.transform.position,new Vector3(spot.transform.position.x, player.transform.position.y, player.transform.position.z), 0.2f);
         if (Vector3.Distance(player.transform.position, spot.transform.position) <= 0.3f) actionDone = true;
     }
 
