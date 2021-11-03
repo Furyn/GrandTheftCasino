@@ -8,6 +8,8 @@ public abstract class Action : MonoBehaviour
     protected bool actionDone;
     public abstract void PerformAction(GameObject player);
 
+    public abstract void CheckIfActionIsPossible(GameObject player);
+
     public bool GetCanBePerformed()
     {
         return canBePerformed;

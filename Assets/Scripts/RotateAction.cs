@@ -14,4 +14,9 @@ public class RotateAction : Action
     {
         rotateValue = value;
     }
+
+    override public void CheckIfActionIsPossible(GameObject player)
+    {
+        canBePerformed = true;
+    }
 }

@@ -18,13 +18,17 @@ public class ActionsManager : MonoBehaviour
 
     void Update()
     {
-        isInAction = !actions[actualActionIndex].GetActionDone();
-        if(!isInAction)
-        {
-            actualActionIndex++;
-            
+        if (actions.Length > 0) {
+            isInAction = !actions[actualActionIndex].GetActionDone();
+            if (!isInAction)
+            {
+                actualActionIndex++;
+
+            }
+            CheckIfActionIsPossible(actions[actualActionIndex]);
+            if (canPerformAction)
+                PerformAction(actions[actualActionIndex]);
         }
-        PerformAction(actions[actualActionIndex]);
     }
 
     void CheckIfActionIsPossible(Action actionToPerform)
@@ -44,6 +48,21 @@ public class ActionsManager : MonoBehaviour
 
     void GoBackToBeginning()
     {
-        
+        List<Action> actionsList = new List<Action>();
+        for (int i = actualActionIndex; i >= 0; i--)
+        {
+            if (actions[i] is MoveAction)
+            {
+                actionsList.Add(actions[i]);
+            }
+            
+        }
+        Action[] reverseMovesAction = new Action[actionsList.Count];
+
+        for (int y = 0; y < actionsList.Count; y++)
+        {
+            reverseMovesAction[y] = actionsList[y];
+        }
+        actions = reverseMovesAction;
     }
 }
