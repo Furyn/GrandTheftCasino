@@ -46,6 +46,21 @@ public class ActionsManager : MonoBehaviour
 
     void GoBackToBeginning()
     {
-        
+        List<Action> actionsList = new List<Action>();
+        for (int i = actualActionIndex; i >= 0; i--)
+        {
+            if (actions[i] is MoveAction)
+            {
+                actionsList.Add(actions[i]);
+            }
+            
+        }
+        Action[] reverseMovesAction = new Action[actionsList.Count];
+
+        for (int y = 0; y < actionsList.Count; y++)
+        {
+            reverseMovesAction[y] = actionsList[y];
+        }
+        actions = reverseMovesAction;
     }
 }
