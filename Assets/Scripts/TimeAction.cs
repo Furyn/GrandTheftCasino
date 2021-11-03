@@ -7,11 +7,14 @@ public class TimeAction : Action
     public float timeToWait;
     override public void PerformAction(GameObject player)
     {
+        actionDone = false;
         StartCoroutine(WaitCoroutine());
+        actionDone = true;
     }
 
     void setTime(float value)
     {
+        
         timeToWait = value;
     }
 

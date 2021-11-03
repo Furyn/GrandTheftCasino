@@ -18,15 +18,17 @@ public class ActionsManager : MonoBehaviour
 
     void Update()
     {
-        isInAction = !actions[actualActionIndex].GetActionDone();
-        if(!isInAction)
-        {
-            actualActionIndex++;
-            
+        if (actions.Length > 0) {
+            isInAction = !actions[actualActionIndex].GetActionDone();
+            if (!isInAction)
+            {
+                actualActionIndex++;
+
+            }
+            CheckIfActionIsPossible(actions[actualActionIndex]);
+            if (canPerformAction)
+                PerformAction(actions[actualActionIndex]);
         }
-        CheckIfActionIsPossible(actions[actualActionIndex]);
-        if (canPerformAction)
-            PerformAction(actions[actualActionIndex]);
     }
 
     void CheckIfActionIsPossible(Action actionToPerform)
