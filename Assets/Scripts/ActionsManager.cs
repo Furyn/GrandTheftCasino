@@ -24,7 +24,9 @@ public class ActionsManager : MonoBehaviour
             actualActionIndex++;
             
         }
-        PerformAction(actions[actualActionIndex]);
+        CheckIfActionIsPossible(actions[actualActionIndex]);
+        if (canPerformAction)
+            PerformAction(actions[actualActionIndex]);
     }
 
     void CheckIfActionIsPossible(Action actionToPerform)
