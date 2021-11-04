@@ -22,14 +22,19 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private float timeRate = 1;
 
+    [SerializeField]
+    private GameObject tvStatic;
 
     private void Update()
     {
-
+        Debug.Log(Time.time);
         float milliseconds = Time.deltaTime * 1000 * timeRate;
         timeSpan += new System.TimeSpan(0, 0, 0, 0, (int)milliseconds);
 
         timeText.GetComponentInChildren<TextMeshProUGUI>().text = timeSpan.ToString();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+            TurnStaticOn();
 
         // Fait par DOV
         if (Input.GetKeyDown(KeyCode.Keypad1))
@@ -87,10 +92,22 @@ public class CameraManager : MonoBehaviour
         cameras[actualCamera].enabled = false;
         actualCamera = cameraToChange  - 1;
         cameras[actualCamera].enabled = true;
+
+
     }
 
+    private void TurnStaticOn()
+    {
+        tvStatic.SetActive(true);
+        Invoke("TurnStaticOff", .25f);
+        Debug.Log("Fonction faite");
+    }
 
-
+    private void TurnStaticOff()
+    {
+        Debug.Log("Ca fait 5");
+        tvStatic.SetActive(false);
+    }
 
 
     /* OLD CODE
