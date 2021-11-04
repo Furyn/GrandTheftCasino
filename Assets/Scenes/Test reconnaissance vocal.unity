@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 1049689404}
   - {fileID: 1936537055}
   - {fileID: 1743653448}
+  onePhoneDringDring: 0
 --- !u!4 &266151588
 Transform:
   m_ObjectHideFlags: 0
@@ -366,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDringDring: 0
   PhoneNumberString: 123
+  _duration: 10
 --- !u!1 &1312800639
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDringDring: 0
   PhoneNumberString: 789
+  _duration: 10
 --- !u!1 &1745913263
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f93edd3ea200942a8f09dcacbd40a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orders:
+  - {fileID: 11400000, guid: 3fa6838cb2de70e44bfb9add7b027c24, type: 2}
+  actions: []
 --- !u!23 &1753433541
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -777,6 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDringDring: 0
   PhoneNumberString: 456
+  _duration: 10
 --- !u!1001 &2990541432483664583
 PrefabInstance:
   m_ObjectHideFlags: 0
