@@ -5,7 +5,7 @@ using UnityEditor;
 
 public class SetOutline : MonoBehaviour
 {
-    [SerializeField] private Material outlineMaterial;
+    private Material outlineMaterial;
     [SerializeField] private float outlineScaleFactor;
     private Color outlineColor;
     private Renderer outlineRenderer;
