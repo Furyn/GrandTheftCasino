@@ -13,10 +13,54 @@ MonoBehaviour:
   m_Name: RotateRightward
   m_EditorClassIdentifier: 
   type: 1
-  keywords: Rotate to [the /][right/wright]
+  keywords: '[Rotate/rocket] [to /tout /two /][the /][right/wright/white]'
   words:
-  - rotate to [the /][right/wright]
-  - rotate to [the /][right/wright]
-  - rotate to [the /][right/wright]
-  - rotate to [the /][right/wright]
+  - rotate to the right
+  - rotate to the wright
+  - rotate to the white
+  - rotate to right
+  - rotate to wright
+  - rotate to white
+  - rotate tout the right
+  - rotate tout the wright
+  - rotate tout the white
+  - rotate tout right
+  - rotate tout wright
+  - rotate tout white
+  - rotate two the right
+  - rotate two the wright
+  - rotate two the white
+  - rotate two right
+  - rotate two wright
+  - rotate two white
+  - rotate the right
+  - rotate the wright
+  - rotate the white
+  - rotate right
+  - rotate wright
+  - rotate white
+  - rocket to the right
+  - rocket to the wright
+  - rocket to the white
+  - rocket to right
+  - rocket to wright
+  - rocket to white
+  - rocket tout the right
+  - rocket tout the wright
+  - rocket tout the white
+  - rocket tout right
+  - rocket tout wright
+  - rocket tout white
+  - rocket two the right
+  - rocket two the wright
+  - rocket two the white
+  - rocket two right
+  - rocket two wright
+  - rocket two white
+  - rocket the right
+  - rocket the wright
+  - rocket the white
+  - rocket right
+  - rocket wright
+  - rocket white
   action: {fileID: 11400000, guid: 0ff48f0ba335f8c479acddfdca750260, type: 2}

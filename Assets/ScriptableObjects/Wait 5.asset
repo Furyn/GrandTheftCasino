@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d88dfc476c7afc429505b92da2b1339, type: 3}
-  m_Name: Rightward
+  m_Name: Wait 5
   m_EditorClassIdentifier: 
-  type: 0
-  keywords: Go to the [right/wright],Right,wright
+  type: 2
+  keywords: '[Wait/ouais/Stop/ce top] five [seconds/2nd]'
   words:
-  - go to the right
-  - go to the wright
-  - right
-  - wright
-  action: {fileID: 11400000, guid: ede55218da2cb18488cbfa2e51e644ee, type: 2}
+  - wait five seconds
+  - wait five 2nd
+  - ouais five seconds
+  - ouais five 2nd
+  - stop five seconds
+  - stop five 2nd
+  - ce top five seconds
+  - ce top five 2nd
+  action: {fileID: 11400000, guid: e769763abb4a6dc40a26f5a11d053455, type: 2}

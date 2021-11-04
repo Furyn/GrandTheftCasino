@@ -84,6 +84,7 @@ public class ActionsManager : MonoBehaviour {
     }
 
     void GoBackToBeginning() {
+        if (actionsDone.Count == 0) { return; }
         if (reverse) { return; }
         actions[actualActionIndex].Reset();
         player.SetRotation(player.orientation.Inverse());

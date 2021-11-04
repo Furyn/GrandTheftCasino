@@ -47,12 +47,10 @@ public class PlayerController : MonoBehaviour {
                 voice.StartDictationEngine();
             } else {
                 voice.CloseDictationEngine();
-                if (voice.actions.Count > 0) {
-                    actionsManager.ExecuteActions(voice.actions);
-                }
             }
         } else if (Input.GetKeyDown(KeyCode.R)) {
             actionsManager.ExecuteActions(voice.actions);
+            voice.actions.Clear();
         }
     }
 
@@ -76,6 +74,7 @@ public class PlayerController : MonoBehaviour {
     public Coroutine MoveToSpotDirection(Tools.Directions direction) {
         MoveSpot spot = SpotInDirection(direction);
         if (SpotInDirection(direction) != null) {
+            orientation = direction;
             return MoveToSpot(spot);
         }
         return null;

@@ -45,6 +45,7 @@ public class RecognitionVoice : MonoBehaviour {
     #region DitactionRecognizer
 
     public void StartDictationEngine() {
+        Debug.LogWarning("-> Start dictation");
         dictationRecognizer = new DictationRecognizer();
         dictationRecognizer.DictationHypothesis += DictationRecognizer_OnDictationHypothesis;
         dictationRecognizer.DictationResult += DictationRecognizer_OnDictationResult;
@@ -56,6 +57,7 @@ public class RecognitionVoice : MonoBehaviour {
 
     public void CloseDictationEngine() {
         if (dictationRecognizer != null) {
+            Debug.LogWarning("-> End dictation");
             dictationRecognizer.DictationHypothesis -= DictationRecognizer_OnDictationHypothesis;
             dictationRecognizer.DictationComplete -= DictationRecognizer_OnDictationComplete;
             dictationRecognizer.DictationResult -= DictationRecognizer_OnDictationResult;
@@ -70,18 +72,30 @@ public class RecognitionVoice : MonoBehaviour {
 
     private void DictationRecognizer_OnDictationResult(string text, ConfidenceLevel confidence) {
         Debug.Log(text);
-        Debug.Log("//");
-        string[] textSplitted = text.Split(' ');
-        for (int i = 0; i < textSplitted.Length; i++) {
-            string word = textSplitted[i];
-            for (int j = 0; j < orders.Length; j++) {
-                if (orders[j].ContainsKeyword(word)) {
-                    if (orders[j].type == OrderType.CANCEL) {
+        //string[] textSplitted = text.Split(' ');
+        //for (int i = 0; i < textSplitted.Length; i++) {
+        //    string word = textSplitted[i];
+        //    for (int j = 0; j < orders.Length; j++) {
+        //        if (orders[j].ContainsKeyword(word)) {
+        //            if (orders[j].type == OrderType.CANCEL) {
+        //                actions.Clear();
+        //                continue;
+        //            }
+        //            Debug.Log("+ " + orders[j].action);
+        //            actions.Add(orders[j].action);
+        //        }
+        //    }
+        //}
+        for (int i = 0; i < orders.Length; i++) {
+            for (int j = 0; j < orders[i].words.Count; j++) {
+                if (text.IndexOf(orders[i].words[j]) != -1) {
+                    if (orders[i].type == OrderType.CANCEL) {
                         actions.Clear();
                         continue;
                     }
-                    Debug.Log(". " + orders[j].action);
-                    actions.Add(orders[j].action);
+                    Debug.Log("+ " + orders[i].action);
+                    actions.Add(orders[i].action);
+                    //DictationRecognizer_OnDictationComplete(DictationCompletionCause.Complete);
                 }
             }
         }

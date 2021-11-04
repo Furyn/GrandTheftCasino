@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d88dfc476c7afc429505b92da2b1339, type: 3}
+  m_Name: Wait 2
+  m_EditorClassIdentifier: 
+  type: 2
+  keywords: '[Wait/ouais/Stop/ce top] [two/tout] [seconds/2nd]'
+  words:
+  - wait two seconds
+  - wait two 2nd
+  - wait tout seconds
+  - wait tout 2nd
+  - ouais two seconds
+  - ouais two 2nd
+  - ouais tout seconds
+  - ouais tout 2nd
+  - stop two seconds
+  - stop two 2nd
+  - stop tout seconds
+  - stop tout 2nd
+  - ce top two seconds
+  - ce top two 2nd
+  - ce top tout seconds
+  - ce top tout 2nd
+  action: {fileID: 11400000, guid: 7e51b842554f52448aa05e8f850b1a43, type: 2}

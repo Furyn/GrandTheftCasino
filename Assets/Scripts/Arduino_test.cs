@@ -25,6 +25,7 @@ public class Arduino_test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        return;
         /*UduinoManager.Instance.digitalWrite(13, State.HIGH);
         UduinoManager.Instance.digitalWrite(12, State.HIGH);
         UduinoManager.Instance.digitalWrite(11, State.HIGH);

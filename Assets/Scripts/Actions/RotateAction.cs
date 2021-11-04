@@ -18,6 +18,7 @@ public class RotateAction : Action_Voleur {
             tempRot = rotation.Add(player.orientation);
         }
         player.SetRotation(tempRot);
+        actionDone = true;
     }
 
     override public void PerformActionBackward(PlayerController player) {
