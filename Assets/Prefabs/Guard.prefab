@@ -392,6 +392,13 @@ MonoBehaviour:
   - {fileID: 8945251975722331413}
   - {fileID: 8945251976450552892}
   agent: {fileID: 8945251976390226326}
+  distance_trigger_phone: 5
+  wait_on_phone: 2
+  sound:
+  - {fileID: 8300000, guid: 10b3cfd8e8c65e34da94a6f8bb9fe21a, type: 3}
+  - {fileID: 8300000, guid: 02834535872dc7d49a2061ebd9a34771, type: 3}
+  - {fileID: 8300000, guid: efcebc2e643788c4f9c261ac46ec8a22, type: 3}
+  - {fileID: 8300000, guid: ec925f5e9c7324c43ab3f1a807223eb2, type: 3}
 --- !u!1 &8945251975722331418
 GameObject:
   m_ObjectHideFlags: 0

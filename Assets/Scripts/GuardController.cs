@@ -15,6 +15,10 @@ public class GuardController : MonoBehaviour
     private int index = 0;
     private PhoneManager phoneManager = null;
 
+    public AudioClip[] soundHangUpPhone;
+    private AudioSource _audioSource = null;
+    private int randomSound;
+
     void Start()
     {
         phoneManager = FindObjectOfType<PhoneManager>();
@@ -27,7 +31,13 @@ public class GuardController : MonoBehaviour
         {
             agent.SetDestination(passPoint[index].position);
         }
-        
+
+        _audioSource = GetComponent<AudioSource>();
+        if (!_audioSource)
+        {
+            Debug.LogError("You need an AudioSource for sounds");
+        }
+        randomSound = Random.Range(0, soundHangUpPhone.Length);
     }
 
     void Update()
@@ -52,6 +62,19 @@ public class GuardController : MonoBehaviour
                     agent.SetDestination(phone.transform.position);
                     timer_on_phone = wait_on_phone;
                     onPhone = true;
+                    if (_audioSource)
+                    {
+                        _audioSource.Stop();
+                        _audioSource.clip = null;
+                        _audioSource.clip = soundHangUpPhone[randomSound];
+                        _audioSource.Play();
+                        int rand = randomSound;
+                        while (rand == randomSound)
+                        {
+                            rand = Random.Range(0, soundHangUpPhone.Length);
+                        }
+                        randomSound = rand;
+                    }
                 }
             }
         }
@@ -74,6 +97,5 @@ public class GuardController : MonoBehaviour
                 }
             }
         }
-
     }
 }

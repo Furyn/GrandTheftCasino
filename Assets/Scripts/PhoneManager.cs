@@ -13,6 +13,11 @@ public class PhoneManager : MonoBehaviour
 
     public static PhoneManager instance = null;
 
+    public AudioClip[] soundWrongNumber;
+    public AudioClip soundRinging;
+    private AudioSource _audioSource = null;
+    private int randomSound;
+
     private void Awake()
     {
         if (instance != null)
@@ -21,13 +26,32 @@ public class PhoneManager : MonoBehaviour
             instance = this;
     }
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        if (!_audioSource)
+        {
+            Debug.LogError("You need an AudioSource for sounds");
+        }
+        randomSound = UnityEngine.Random.Range(0, soundWrongNumber.Length);
+    }
+
     void Update()
     {
-         if (gt.Length == 3) // enter/return
+        if (gt.Length == 3) // enter/return
         {
-            if(!onePhoneDringDring)
+            if (!onePhoneDringDring)
                 CallPhoneNumber(gt);
             gt = ("");
+        }
+
+        if (!onePhoneDringDring && _audioSource.isPlaying)
+        {
+            if (_audioSource)
+            {
+                _audioSource.Stop();
+                _audioSource.clip = null;
+            }
         }
 
         foreach (char c in Input.inputString)
@@ -45,6 +69,7 @@ public class PhoneManager : MonoBehaviour
     {
         if (spawnPhoneInfo.Length != 0)
         {
+            int check = 0;
             foreach (Phone phoneCheck in spawnPhoneInfo)
             {
                 if (phoneCheck.PhoneNumberString == Number)
@@ -52,6 +77,36 @@ public class PhoneManager : MonoBehaviour
                     phoneCheck.isDringDring = true;
                     onePhoneDringDring = true;
                     Debug.Log("tu as appelé le phone : " + phoneCheck.gameObject.name);
+                }
+                else
+                {
+                    check++;
+                }
+            }
+            if (check == spawnPhoneInfo.Length)// Call wrong number
+            {
+                if (_audioSource)
+                {
+                    _audioSource.Stop();
+                    _audioSource.clip = null;
+                    _audioSource.clip = soundWrongNumber[randomSound];
+                    _audioSource.Play();
+                    int rand = randomSound;
+                    while (rand == randomSound)
+                    {
+                        rand = UnityEngine.Random.Range(0, soundWrongNumber.Length);
+                    }
+                    randomSound = rand;
+                }
+            }
+            else
+            {
+                if (_audioSource)
+                {
+                    _audioSource.Stop();
+                    _audioSource.clip = null;
+                    _audioSource.clip = soundRinging;
+                    _audioSource.Play();
                 }
             }
 

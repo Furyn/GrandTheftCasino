@@ -7,6 +7,20 @@ public class Vision : MonoBehaviour
     [SerializeField]
     private GameObject visionZone;
 
+    public AudioClip soundSeeRobber;
+    private AudioSource _audioSource = null;
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        if (!_audioSource)
+        {
+            Debug.LogError("You need an AudioSource for sounds");
+        }
+        else
+        {
+            _audioSource.clip = soundSeeRobber;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player") == true)
@@ -24,6 +38,10 @@ public class Vision : MonoBehaviour
             else
             {
                 // Game over
+                if (_audioSource)
+                {
+                    _audioSource.Play();
+                }
                 Debug.Log("CEST LE JOEUUR");
             }
         }
