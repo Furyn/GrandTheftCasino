@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Vision : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject visionZone;
-
     public AudioClip soundSeeRobber;
     private AudioSource _audioSource = null;
     private void Start()
@@ -26,7 +23,6 @@ public class Vision : MonoBehaviour
         if(other.CompareTag("Player") == true)
         {
             RaycastHit hit;
-
             if (Physics.Raycast(transform.position, other.transform.position, out hit))
             {
 
