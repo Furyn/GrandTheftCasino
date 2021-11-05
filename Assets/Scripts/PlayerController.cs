@@ -14,6 +14,12 @@ public class PlayerController : MonoBehaviour {
     public RecognitionVoice voice = null;
 
     private Tools.Delegate<MoveSpot> onArrivedSpot;
+    [SerializeField] private Material _playerFrontMaterial = null;
+    [SerializeField] private Material _playerBackMaterial = null;
+    [SerializeField] private Texture _playerIdleFrontTexture = null;
+    [SerializeField] private Texture _playerIdleBackTexture = null;
+    [SerializeField] private Texture _playerRunTexture = null;
+    [SerializeField] private Texture _playerTelTexture = null;
 
     #region Coroutine
     private Coroutine moveRoutine = null;
@@ -93,9 +99,22 @@ public class PlayerController : MonoBehaviour {
             Vector2 direction = (position - transform.position.To2D()).normalized;
             //transform.position += direction.To3D() * speed;
             transform.position = Vector3.MoveTowards(transform.position, spot.transform.position.Override(transform.position.y), speed);
+            _playerFrontMaterial.mainTexture = _playerRunTexture;
+            _playerBackMaterial.mainTexture = _playerRunTexture;
             yield return new WaitForEndOfFrame();
         }
         onArrivedSpot(spot);
+        _playerFrontMaterial.mainTexture = _playerIdleFrontTexture;
+        _playerBackMaterial.mainTexture = _playerIdleBackTexture;
+    }
+
+    public void OnPhonePos(Phone phone)
+    {
+        if (phone.isDringDring)
+        {
+            _playerFrontMaterial.mainTexture = _playerTelTexture;
+            _playerBackMaterial.mainTexture = _playerTelTexture;
+        }
     }
 
     #endregion
