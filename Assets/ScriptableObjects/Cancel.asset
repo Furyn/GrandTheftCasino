@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Cancel
   m_EditorClassIdentifier: 
   type: 4
-  keywords: Cancel
+  keywords: Cancel,Forget,Start again,Annule,Oublie,recommence
   words:
-  - go to the right
-  - go to the wright
-  - right
-  - wright
+  - cancel
+  - forget
+  - start again
+  - annule
+  - oublie
+  - recommence
   action: {fileID: 0}

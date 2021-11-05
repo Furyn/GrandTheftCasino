@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: RotateRightward
   m_EditorClassIdentifier: 
   type: 1
-  keywords: '[Rotate/rocket] [to /tout /two /][the /][right/wright/white]'
+  keywords: "[Rotate/rocket] [to /tout /two /][the /][right/wright/white],Look on
+    the [right/wright],tourne \xE0 droite"
   words:
   - rotate to the right
   - rotate to the wright
@@ -63,4 +64,7 @@ MonoBehaviour:
   - rocket right
   - rocket wright
   - rocket white
+  - look on the right
+  - look on the wright
+  - "tourne \xE0 droite"
   action: {fileID: 11400000, guid: 0ff48f0ba335f8c479acddfdca750260, type: 2}

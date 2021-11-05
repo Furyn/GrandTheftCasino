@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: RotateBackward
   m_EditorClassIdentifier: 
   type: 1
-  keywords: Turn around
+  keywords: Turn around,Retourne-toi,Demi-tour,demi tour
   words:
   - turn around
+  - retourne-toi
+  - demi-tour
+  - demi tour
   action: {fileID: 11400000, guid: 40b206adefd7f2549a3f4db30839b313, type: 2}

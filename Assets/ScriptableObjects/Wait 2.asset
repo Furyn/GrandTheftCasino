@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Wait 2
   m_EditorClassIdentifier: 
   type: 2
-  keywords: '[Wait/ouais/Stop/ce top] [two/tout] [seconds/2nd]'
+  keywords: '[Wait/ouais/Stop/ce top] [two/tout] [seconds/2nd],attends [deux/de]
+    seconde'
   words:
   - wait two seconds
   - wait two 2nd
@@ -31,4 +32,6 @@ MonoBehaviour:
   - ce top two 2nd
   - ce top tout seconds
   - ce top tout 2nd
+  - attends deux seconde
+  - attends de seconde
   action: {fileID: 11400000, guid: 7e51b842554f52448aa05e8f850b1a43, type: 2}
