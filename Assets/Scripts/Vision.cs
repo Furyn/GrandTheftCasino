@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Vision : MonoBehaviour
 {
+
+    public Image gameOverImage;
     public AudioClip soundSeeRobber;
     private AudioSource _audioSource = null;
     private void Start()
@@ -17,6 +20,9 @@ public class Vision : MonoBehaviour
         {
             _audioSource.clip = soundSeeRobber;
         }
+
+        
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -38,8 +44,26 @@ public class Vision : MonoBehaviour
                 {
                     _audioSource.Play();
                 }
-                Debug.Log("CEST LE JOEUUR");
+                if (gameOverImage)
+                {
+                    gameOverImage.gameObject.SetActive(true);
+                    StartCoroutine(FadeImage(gameOverImage));
+                }
+
             }
+        }
+    }
+
+    IEnumerator FadeImage(Image img)
+    {
+        if(img)
+        {
+            for(float i = 0; i <= 1; i+= Time.deltaTime)
+            {
+                img.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+            
         }
     }
 }
