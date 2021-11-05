@@ -20,7 +20,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] private Material _playerFrontMaterial = null;
     [SerializeField] private Material _playerBackMaterial = null;
     [SerializeField] private Texture _playerTelTexture = null;
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animatorFront;
+    [SerializeField] private Animator animatorBack;
     private bool oneTime = false;
 
     #region Coroutine
@@ -118,13 +119,15 @@ public class PlayerController : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, spot.transform.position.Override(transform.position.y), speed);
             if (!oneTime)
             {
-                animator.SetTrigger("isWalking");
+                animatorFront.SetTrigger("isWalking");
+                animatorBack.SetTrigger("isWalking");
                 oneTime = true;
             }
             yield return new WaitForEndOfFrame();
         }
         onArrivedSpot(spot);
-        animator.SetTrigger("isWalking");
+        animatorFront.SetTrigger("isWalking");
+        animatorBack.SetTrigger("isWalking");
         oneTime = false;
     }
 
