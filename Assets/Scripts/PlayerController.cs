@@ -19,10 +19,9 @@ public class PlayerController : MonoBehaviour {
     private Tools.Delegate<MoveSpot> onArrivedSpot;
     [SerializeField] private Material _playerFrontMaterial = null;
     [SerializeField] private Material _playerBackMaterial = null;
-    [SerializeField] private Texture _playerIdleFrontTexture = null;
-    [SerializeField] private Texture _playerIdleBackTexture = null;
-    [SerializeField] private Texture _playerRunTexture = null;
     [SerializeField] private Texture _playerTelTexture = null;
+    [SerializeField] private Animator animator;
+    private bool oneTime = false;
 
     #region Coroutine
     private Coroutine moveRoutine = null;
@@ -117,13 +116,16 @@ public class PlayerController : MonoBehaviour {
             Vector2 direction = (position - transform.position.To2D()).normalized;
             //transform.position += direction.To3D() * speed;
             transform.position = Vector3.MoveTowards(transform.position, spot.transform.position.Override(transform.position.y), speed);
-            _playerFrontMaterial.mainTexture = _playerRunTexture;
-            _playerBackMaterial.mainTexture = _playerRunTexture;
+            if (!oneTime)
+            {
+                animator.SetTrigger("isWalking");
+                oneTime = true;
+            }
             yield return new WaitForEndOfFrame();
         }
         onArrivedSpot(spot);
-        _playerFrontMaterial.mainTexture = _playerIdleFrontTexture;
-        _playerBackMaterial.mainTexture = _playerIdleBackTexture;
+        animator.SetTrigger("isWalking");
+        oneTime = false;
     }
 
     public void OnPhonePos(Phone phone)
