@@ -25,7 +25,6 @@ public class Arduino_test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        return;
         /*UduinoManager.Instance.digitalWrite(13, State.HIGH);
         UduinoManager.Instance.digitalWrite(12, State.HIGH);
         UduinoManager.Instance.digitalWrite(11, State.HIGH);
@@ -44,7 +43,7 @@ public class Arduino_test : MonoBehaviour
             {
                 OnCall = true;
             }
-            if (data == "NO+")
+            else if (data == "NO+")
             {
                 upCam = false;
             }
@@ -52,7 +51,7 @@ public class Arduino_test : MonoBehaviour
             {
                 upCam = true;
             }
-            if (data == "NO-")
+            else if (data == "NO-")
             {
                 downCam = false;
             }
