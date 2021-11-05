@@ -30,7 +30,8 @@ public class Arduino_test : MonoBehaviour
         UduinoManager.Instance.digitalWrite(11, State.HIGH);
         UduinoManager.Instance.digitalWrite(10, State.HIGH);*/
         
-        if (UduinoManager.Instance.uduinoDevices["uduinoBoard"] != null)
+        //if (UduinoManager.Instance.uduinoDevices["uduinoBoard"] != null)
+        if (UduinoManager.Instance.uduinoDevices.ContainsKey("uduinoBoard"))
         {
             UduinoManager.Instance.sendCommand("pr");
             data = UduinoManager.Instance.uduinoDevices["uduinoBoard"].ReadFromArduino();
@@ -62,6 +63,8 @@ public class Arduino_test : MonoBehaviour
             else if (data != null && OnCall)
             {
                 input_telephone += data;
+                PhoneManager.instance.gt = input_telephone;
+                if (input_telephone.Length >= 3) { input_telephone = ""; }
             }
 
             UduinoManager.Instance.sendCommand("ref");

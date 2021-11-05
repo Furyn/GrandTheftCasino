@@ -10,6 +10,11 @@ public class CameraManager : MonoBehaviour
     private Camera[] cameras;
 
     private int actualCamera = 0;
+    public float cd_button = 0.5f;
+
+    private float cd_up = 0f;
+    private float cd_down = 0f;
+
 
     [SerializeField]
     private GameObject cameraText;
@@ -25,6 +30,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     private GameObject tvStatic;
 
+    public Arduino_test adruino;
+
 
 
     void Update()
@@ -34,16 +41,20 @@ public class CameraManager : MonoBehaviour
 
         timeText.GetComponentInChildren<TextMeshProUGUI>().text = timeSpan.ToString();
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        cd_up -= Time.deltaTime;
+        cd_down -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.UpArrow) || adruino.upCam && cd_up <= 0f)
             SelectNextCamera();
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || adruino.downCam && cd_down <= 0f)
             SelectPreviousCamera();
 
         cameraText.GetComponentInChildren<TextMeshProUGUI>().text = "CAM. " + (actualCamera + 1);
     }
     private void SelectNextCamera()
     {
+        cd_up = cd_button;
         TurnStaticOn();
         cameras[actualCamera].enabled = false;
 
@@ -64,6 +75,7 @@ public class CameraManager : MonoBehaviour
 
     private void SelectPreviousCamera()
     {
+        cd_down = cd_button;
         TurnStaticOn();
         cameras[actualCamera].enabled = false;
 
