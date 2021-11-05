@@ -5,7 +5,7 @@ using UnityEngine;
 public class ActionsManager : MonoBehaviour {
     [SerializeField] PlayerController player = null;
     [SerializeField] List<Action_Voleur> actions = null;
-    [SerializeField] List<Action_Voleur> actionsDone = null;
+    public List<Action_Voleur> actionsDone = null;
     private int actualActionIndex;
     //private bool canPerformAction;
     private bool isInAction;
@@ -26,6 +26,7 @@ public class ActionsManager : MonoBehaviour {
             if (actualActionIndex < actions.Count) {
                 PerformAction(actions[actualActionIndex]);
             } else {
+                player.WorkDone();
                 ResetManager();
             }
         }
@@ -39,17 +40,20 @@ public class ActionsManager : MonoBehaviour {
     }
 
     public void StartManager() {
+        actionsDone.Clear();
         PerformAction(actions[0]);
         inWork = true;
     }
 
     public void ResetManager() {
+        for (int i = 0; i < actions.Count; i++) {
+            actions[i].Reset();
+        }
         actions.Clear();
         reverse = false;
         isInAction = false;
         inWork = false;
         actualActionIndex = 0;
-        actionsDone.Clear();
     }
 
     //void CheckIfActionIsPossible(Action actionToPerform) {
@@ -83,10 +87,10 @@ public class ActionsManager : MonoBehaviour {
         PerformAction(actions[actualActionIndex]);
     }
 
-    void GoBackToBeginning() {
+    public void GoBackToBeginning() {
         if (actionsDone.Count == 0) { return; }
         if (reverse) { return; }
-        actions[actualActionIndex].Reset();
+        //actions[actualActionIndex].Reset();
         player.SetRotation(player.orientation.Inverse());
         actionsDone.Reverse();
         actualActionIndex = 0;

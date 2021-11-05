@@ -7,6 +7,7 @@ public class MoveSpot : MonoBehaviour
     public float distanceDetection = 1.0f;
     public List<GameObject> spotInfos;
     public List<MoveSpot> spotDirections;
+    public Phone phone;
 
     void Start()
     {
@@ -52,6 +53,10 @@ public class MoveSpot : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public Phone ThereIsDringDring() {
+        return phone;
     }
 
     public void OnDrawGizmos() {

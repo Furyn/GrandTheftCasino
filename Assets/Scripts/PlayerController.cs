@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour {
     public List<Action_Voleur> actions = null;
     public List<Action_Voleur> orders = null;
     public RecognitionVoice voice = null;
+    public GameObject viewArrow = null;
+    public Arduino_test arduino = null;
+    private bool onAction = false;
 
     private Tools.Delegate<MoveSpot> onArrivedSpot;
     [SerializeField] private Material _playerFrontMaterial = null;
@@ -23,15 +26,33 @@ public class PlayerController : MonoBehaviour {
 
     #region Coroutine
     private Coroutine moveRoutine = null;
+    private Coroutine rotationRoutine = null;
     #endregion
 
     private void Start() {
         onArrivedSpot += SetActualSpot;
         onArrivedSpot += ResetNextSpot;
         orders = new List<Action_Voleur>();
+        SetRotation(orientation);
     }
 
     private void Update() {
+        if (actualSpot.phone != null && !onAction) {
+            if (actualSpot.phone.isDringDring) {
+                voice.StartDictationEngine();
+                actualSpot.phone.OnAllo();
+            } else {
+                if (!arduino.OnCall && voice.actions.Count > 0) {
+                    onAction = true;
+                    voice.CloseDictationEngine();
+                    actionsManager.ExecuteActions(voice.actions);
+                    voice.actions.Clear();
+                }
+            }
+        } else if (actualSpot.phone == null && !onAction && actionsManager.actionsDone.Count > 0) {
+            actionsManager.GoBackToBeginning();
+        }
+
         if (Input.GetKeyDown(KeyCode.Z)) {
             orders.Add(actions[0]);
             Debug.Log("Up");
@@ -55,23 +76,20 @@ public class PlayerController : MonoBehaviour {
                 voice.CloseDictationEngine();
             }
         } else if (Input.GetKeyDown(KeyCode.R)) {
+            onAction = true;
             actionsManager.ExecuteActions(voice.actions);
             voice.actions.Clear();
         }
     }
 
+    public void WorkDone() {
+        if (actualSpot == null) { return; }
+        onAction = false;
+    }
+
     #region Movements
 
     public MoveSpot SpotInDirection(Tools.Directions direction) {
-        //RaycastHit hit;
-        //Debug.DrawLine(actualSpot.transform.position, actualSpot.transform.position + direction.Vector() * 10f, Color.red, 10f);
-        //if (Physics.Raycast(actualSpot.transform.position.Override(), direction.Vector(), out hit, Mathf.Infinity, spotMasks, QueryTriggerInteraction.Collide)) {
-        ////hit = Physics.RaycastAll(actualSpot.transform.position.Override(), direction.Vector(), 100f, spotMasks, QueryTriggerInteraction.Collide);
-        ////if (hit.Length > 0) {
-        //    return hit.collider.GetComponent<MoveSpot>();
-        //}
-        //Debug.Log("Null");
-        //return null;
         if (actualSpot == null) { return null; }
         if (actualSpot.spotDirections[(int)direction] == null) { return null; }
         return actualSpot.spotDirections[(int)direction];
@@ -80,7 +98,7 @@ public class PlayerController : MonoBehaviour {
     public Coroutine MoveToSpotDirection(Tools.Directions direction) {
         MoveSpot spot = SpotInDirection(direction);
         if (SpotInDirection(direction) != null) {
-            orientation = direction;
+            SetRotation(direction);
             return MoveToSpot(spot);
         }
         return null;
@@ -128,7 +146,27 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void SetRotation(Tools.Directions direction) {
+        //viewArrow.transform.rotation = Quaternion.LookRotation(direction.Vector());
+        ArrowRotation(direction);
         orientation = direction;
+    }
+
+    private void ArrowRotation(Tools.Directions direction) {
+        if (rotationRoutine != null) { StopCoroutine(rotationRoutine); }
+        //Quaternion rotation = Quaternion.LookRotation(direction.Vector());
+        Quaternion rotation = Quaternion.LookRotation(direction.Vector(), Vector3.up);
+        rotationRoutine = StartCoroutine(IArrowRotation(rotation, 0.2f));
+    }
+
+    private IEnumerator IArrowRotation(Quaternion quaternion, float time) {
+        float timePassed = 0;
+        Quaternion baseRot = viewArrow.transform.rotation;
+        while (timePassed < time) {
+            viewArrow.transform.rotation = Quaternion.Slerp(baseRot, quaternion, timePassed / time);
+            yield return new WaitForEndOfFrame();
+            timePassed += Time.deltaTime;
+        }
+        viewArrow.transform.rotation = quaternion;
     }
 }
 

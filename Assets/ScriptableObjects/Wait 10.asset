@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wait 10
   m_EditorClassIdentifier: 
   type: 2
-  keywords: '[Wait/ouais/Stop/ce top] ten [seconds/2nd]'
+  keywords: '[Wait/ouais/Stop/ce top] ten [seconds/2nd],attends dix seconde'
   words:
   - wait ten seconds
   - wait ten 2nd
@@ -23,4 +23,5 @@ MonoBehaviour:
   - stop ten 2nd
   - ce top ten seconds
   - ce top ten 2nd
+  - attends dix seconde
   action: {fileID: 11400000, guid: 57572baed18d5b846b0d34440a6555c7, type: 2}

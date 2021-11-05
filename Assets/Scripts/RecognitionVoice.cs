@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public enum OrderType {
     MOVEMENT,
@@ -70,34 +71,40 @@ public class RecognitionVoice : MonoBehaviour {
         }
     }
 
+    private struct ActionsOrdered {
+        public Action_Voleur action;
+        public int index;
+
+        public ActionsOrdered(Action_Voleur _action, int _index) {
+            action = _action;
+            index = _index;
+        }
+    }
+
     private void DictationRecognizer_OnDictationResult(string text, ConfidenceLevel confidence) {
         Debug.Log(text);
-        //string[] textSplitted = text.Split(' ');
-        //for (int i = 0; i < textSplitted.Length; i++) {
-        //    string word = textSplitted[i];
-        //    for (int j = 0; j < orders.Length; j++) {
-        //        if (orders[j].ContainsKeyword(word)) {
-        //            if (orders[j].type == OrderType.CANCEL) {
-        //                actions.Clear();
-        //                continue;
-        //            }
-        //            Debug.Log("+ " + orders[j].action);
-        //            actions.Add(orders[j].action);
-        //        }
-        //    }
-        //}
+        List<ActionsOrdered> toDo = new List<ActionsOrdered>();
         for (int i = 0; i < orders.Length; i++) {
             for (int j = 0; j < orders[i].words.Count; j++) {
-                if (text.IndexOf(orders[i].words[j]) != -1) {
+                int index = text.IndexOf(orders[i].words[j]);
+                if (index != -1) {
                     if (orders[i].type == OrderType.CANCEL) {
                         actions.Clear();
                         continue;
                     }
-                    Debug.Log("+ " + orders[i].action);
-                    actions.Add(orders[i].action);
+                    //actions.Add(orders[i].action);
+                    toDo.Add(new ActionsOrdered(orders[i].action, index));
+                    text = text.Substring(0, index) + text.Substring(index + orders[i].words[j].Length);
+                    i = 0;
+                    break;
                     //DictationRecognizer_OnDictationComplete(DictationCompletionCause.Complete);
                 }
             }
+        }
+        toDo = toDo.OrderBy(x => x.index).ToList();
+        for (int i = 0; i < toDo.Count; i++) {
+            actions.Add(toDo[i].action);
+            Debug.Log("+ " + toDo[i].action);
         }
     }
 

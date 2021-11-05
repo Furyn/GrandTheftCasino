@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Forward
   m_EditorClassIdentifier: 
   type: 0
-  keywords: Forward,Straight
+  keywords: Forward,Straight,Avance,Tout droit
   words:
   - forward
   - straight
+  - avance
+  - tout droit
   action: {fileID: 11400000, guid: 05279ed04d6f83c4fa4e737daff4d99c, type: 2}
