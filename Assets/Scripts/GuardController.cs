@@ -19,6 +19,9 @@ public class GuardController : MonoBehaviour
     private AudioSource _audioSource = null;
     private int randomSound;
 
+    [SerializeField] private Animator animatorFront;
+    [SerializeField] private Animator animatorBack;
+
     void Start()
     {
         phoneManager = FindObjectOfType<PhoneManager>();
@@ -60,10 +63,14 @@ public class GuardController : MonoBehaviour
                 if (distance_trigger_phone > distance && phone.isDringDring)
                 {
                     agent.SetDestination(phone.transform.position);
+                    animatorFront.SetTrigger("isWalking");
+                    animatorBack.SetTrigger("isWalking");
                     if (agent.remainingDistance <= agent.stoppingDistance)
                     {
                         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                         {
+                            animatorFront.SetTrigger("isWalking");
+                            animatorBack.SetTrigger("isWalking");
                             timer_on_phone = wait_on_phone;
                             onPhone = true;
                             StartCoroutine(PhoneSystem(phone));
