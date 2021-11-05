@@ -4712,6 +4712,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 284355571}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &284355573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 284355571}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &284355574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284355573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 948
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!4 &287037199 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 427250, guid: 8e7c22fcd1f5b1a438d7c212274a8f03, type: 3}
@@ -9388,6 +9410,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 473619116}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &473619118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 473619116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &473619119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473619118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 502
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!1 &494655187
 GameObject:
   m_ObjectHideFlags: 0
@@ -14659,6 +14703,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 709363222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &709363224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 709363222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &709363225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709363224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 638
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!43 &711691901
 Mesh:
   m_ObjectHideFlags: 0
@@ -26361,6 +26427,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 1257708831}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1257708833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 1257708831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1257708834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257708833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 473
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!43 &1258980461
 Mesh:
   m_ObjectHideFlags: 0
@@ -26948,6 +27036,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 1279883723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1279883725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 1279883723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1279883726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279883725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 860
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!1001 &1289931931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35372,6 +35482,12 @@ MonoBehaviour:
   actions: []
   orders: []
   voice: {fileID: 416051262}
+  _playerFrontMaterial: {fileID: 0}
+  _playerBackMaterial: {fileID: 0}
+  _playerIdleFrontTexture: {fileID: 0}
+  _playerIdleBackTexture: {fileID: 0}
+  _playerRunTexture: {fileID: 0}
+  _playerTelTexture: {fileID: 0}
 --- !u!1001 &1729172708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41011,6 +41127,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 2039620158}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2039620160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 2039620158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2039620161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039620160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 283
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!1 &2041591124
 GameObject:
   m_ObjectHideFlags: 0
@@ -41216,6 +41354,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 2064289479}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2064289481 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 2064289479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2064289482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064289481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 107
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!1001 &2067318391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41862,6 +42022,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4910226835195870004, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
   m_PrefabInstance: {fileID: 2088336006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2088336008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723918884550009230, guid: 5c2746581a6d46144a97fb73d3291241, type: 3}
+  m_PrefabInstance: {fileID: 2088336006}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2088336009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088336008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1a4f95bd4d5ed438b67b5b9f444666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDringDring: 0
+  PhoneNumberString: 335
+  _duration: 10
+  soundPickUpPhone: []
+  soundHangUpPhone: []
 --- !u!1001 &2093220331
 PrefabInstance:
   m_ObjectHideFlags: 0
