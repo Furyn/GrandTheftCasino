@@ -57,8 +57,6 @@ public class Phone : MonoBehaviour
     public void OnAllo()
     {
         StopDringDring();
-        //Active Reco Vocal
-        //stopMouvement
         if (_audioSource)
         {
             _audioSource.Stop();
@@ -76,8 +74,6 @@ public class Phone : MonoBehaviour
 
     public void StopBlaBla()
     {
-        //Desactive Reco Vocal
-        //reactive mouvement
         if (_audioSource)
         {
             _audioSource.Stop();
