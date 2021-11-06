@@ -18,10 +18,10 @@ public class RotateAction : Action_Voleur {
             tempRot = rotation.Add(player.orientation);
         }
         player.SetRotation(tempRot);
-        actionDone = true;
+        done = true;
     }
 
-    override public void PerformActionBackward(PlayerController player) {
+    public void PerformActionBackward(PlayerController player) {
         if (addPlayerDirection) {
             PerformAction(player);
         } else {
@@ -32,11 +32,7 @@ public class RotateAction : Action_Voleur {
         }
     }
 
-    public override void CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
-        canBePerformed = true;
-    }
-
-    public override void CheckIfBackwardActionIsPossible(PlayerController player) {
-        canBePerformed = true;
+    override public bool CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
+        return true;
     }
 }

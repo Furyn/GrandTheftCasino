@@ -21,7 +21,7 @@ public class MoveDirectionAction : Action_Voleur {
         player.StartCoroutine(Tools.Wait(player.MoveToSpotDirection(tempDir), WorkDone));
     }
 
-    override public void PerformActionBackward(PlayerController player) {
+    public void PerformActionBackward(PlayerController player) {
         if (addPlayerDirection) {
             PerformAction(player);
         } else {
@@ -32,10 +32,9 @@ public class MoveDirectionAction : Action_Voleur {
         }
     }
 
-    override public void CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
+    override public bool CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
         if (reverse) {
-            CheckIfBackwardActionIsPossible(player);
-            return;
+            return CheckIfBackwardActionIsPossible(player);
         }
 
         Tools.Directions tempDir = direction;
@@ -44,13 +43,12 @@ public class MoveDirectionAction : Action_Voleur {
         }
 
         if (player.SpotInDirection(tempDir)) {
-            canBePerformed = true;
-            return;
+            return true;
         }
-        canBePerformed = false;
+        return false;
     }
 
-    override public void CheckIfBackwardActionIsPossible(PlayerController player) {
+    public bool CheckIfBackwardActionIsPossible(PlayerController player) {
         Tools.Directions tempDir = direction;
         if (!addPlayerDirection) {
             tempDir = direction.Inverse();
@@ -59,13 +57,13 @@ public class MoveDirectionAction : Action_Voleur {
         }
 
         if (player.SpotInDirection(tempDir) != null) {
-            canBePerformed = true;
-            return;
+            return true;
         }
-        canBePerformed = false;
+        return false;
     }
 
     public void WorkDone() {
-        actionDone = true;
+        done = true;
+        Debug.LogWarning("WORK DONE !");
     }
 }

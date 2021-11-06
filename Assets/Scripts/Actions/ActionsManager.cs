@@ -8,19 +8,13 @@ public class ActionsManager : MonoBehaviour {
     public List<Action_Voleur> actionsDone = null;
     private int actualActionIndex;
     //private bool canPerformAction;
-    private bool isInAction;
     public bool reverse = false;
     public bool inWork = false;
-
-    void Start() {
-        isInAction = false;
-    }
 
     void Update() {
         if (!inWork || actions.Count == 0) { return; }
 
-        isInAction = !actions[actualActionIndex].GetActionDone();
-        if (!isInAction) {
+        if (actions[actualActionIndex].IsDone()) {
             actions[actualActionIndex].Reset();
             actualActionIndex++;
             if (actualActionIndex < actions.Count) {
@@ -41,7 +35,7 @@ public class ActionsManager : MonoBehaviour {
 
     public void StartManager() {
         actionsDone.Clear();
-        PerformAction(actions[0]);
+        PerformAction(actions[actualActionIndex]);
         inWork = true;
     }
 
@@ -51,7 +45,6 @@ public class ActionsManager : MonoBehaviour {
         }
         actions.Clear();
         reverse = false;
-        isInAction = false;
         inWork = false;
         actualActionIndex = 0;
     }
@@ -61,44 +54,46 @@ public class ActionsManager : MonoBehaviour {
     //}
 
     void PerformAction(Action_Voleur actionToPerform) {
-        if (!isInAction) {
-            isInAction = true;
-            actionToPerform.CheckIfActionIsPossible(player, reverse);
-            if (actionToPerform.GetCanBePerformed()) {
-                actionToPerform.PerformAction(player, reverse);
-                // Conditional
-                if (actionToPerform as ConditionalAction != null) {
-                    if (actionToPerform.GetActionDone()) {
-                        DowngradeAction();
-                    }
-                } else {
-                    if (actionToPerform as TimeAction == null) {
-                        actionsDone.Add(actionToPerform);
-                    }
+        if (actionToPerform.CheckIfActionIsPossible(player, reverse)) {
+            Debug.Log("Performing : " + actionToPerform.name + (reverse ? " reversed " : " "));
+            actionToPerform.PerformAction(player, reverse);
+            // Conditional
+            if (actionToPerform as ConditionalAction != null) {
+                if (actionToPerform.IsDone()) {
+                    DowngradeAction();
+                }
+            } else {
+                if (actionToPerform as TimeAction == null) {
+                    actionsDone.Add(actionToPerform);
                 }
             }
-            else GoBackToBeginning();
+        } else {
+            Debug.LogWarning("Impossibru");
+            GoBackToBeginning();
         }
     }
 
     void DowngradeAction() {
         actualActionIndex--;
-        isInAction = false;
         PerformAction(actions[actualActionIndex]);
     }
 
     public void GoBackToBeginning() {
-        if (actionsDone.Count == 0) { return; }
-        if (reverse) { return; }
-        //actions[actualActionIndex].Reset();
-        player.SetRotation(player.orientation.Inverse());
-        actionsDone.Reverse();
-        actualActionIndex = 0;
-        isInAction = false;
-        reverse = true;
-        actions = new List<Action_Voleur>(actionsDone);
-        if (actions.Count > 0) {
-            PerformAction(actions[actualActionIndex]);
-        }
+        //if (actionsDone.Count == 0) { return; }
+        //if (reverse) { return; }
+        //Debug.LogWarning("Reversing");
+        //ResetManager();
+        //player.SetRotation(player.orientation.Inverse());
+        //actionsDone.Reverse();
+        //inWork = true;
+        //reverse = true;
+        //actions = new List<Action_Voleur>(actionsDone);
+        //if (actions.Count > 0) {
+        //    PerformAction(actions[actualActionIndex]);
+        //} else {
+        //    player.WorkDone();
+        //    ResetManager();
+        //}
+        player.GoBackToOrigin();
     }
 }

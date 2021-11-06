@@ -19,11 +19,11 @@ public class ConditionalAction : Action_Voleur {
             tempDir = direction.Add(player.orientation);
         }
         if (player.actualSpot.TagInDirection(tempDir, tagCondition)) {
-            actionDone = true;
+            done = true;
         }
     }
 
-    override public void PerformActionBackward(PlayerController player) {
+    private void PerformActionBackward(PlayerController player) {
         if (addPlayerDirection) {
             PerformAction(player);
         } else {
@@ -34,17 +34,8 @@ public class ConditionalAction : Action_Voleur {
         }
     }
 
-    override public void CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
-        if (reverse) {
-            CheckIfBackwardActionIsPossible(player);
-            return;
-        }
-
-        if (player.actualSpot != null) { canBePerformed = true; }
-        else { canBePerformed = false; }
-    }
-
-    override public void CheckIfBackwardActionIsPossible(PlayerController player) {
-        CheckIfActionIsPossible(player);
+    override public bool CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
+        if (player.actualSpot != null) { return true; }
+        return false;
     }
 }

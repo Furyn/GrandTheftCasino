@@ -16,33 +16,50 @@ public class PlayerController : MonoBehaviour {
     public Arduino_test arduino = null;
     private bool onAction = false;
 
+    // BackToOrigin
+    private List<MoveSpot> lastSpots = null;
+    private bool backToOrigin = false;
+    private bool inMovementBack = false;
+
     private Tools.Delegate<MoveSpot> onArrivedSpot;
+    private Tools.Delegate<MoveSpot> onLeaveSpot;
     [SerializeField] private Material _playerFrontMaterial = null;
     [SerializeField] private Material _playerBackMaterial = null;
     [SerializeField] private Texture _playerTelTexture = null;
     [SerializeField] private Animator animatorFront;
     [SerializeField] private Animator animatorBack;
     private bool oneTime = false;
+    private bool takeOffPhone = false;
 
     #region Coroutine
     private Coroutine moveRoutine = null;
     private Coroutine rotationRoutine = null;
     #endregion
 
+    #region Unity Callbacks
+
     private void Start() {
         onArrivedSpot += SetActualSpot;
         onArrivedSpot += ResetNextSpot;
+        onLeaveSpot += AddSpotToHistory;
         orders = new List<Action_Voleur>();
+        lastSpots = new List<MoveSpot>();
         SetRotation(orientation);
     }
 
     private void Update() {
+        UpdateBackToOrigin();
+
+        if (!onAction && lastSpots.Count > 0 && !inMovementBack) {
+            lastSpots.Clear();
+        }
+
         if (actualSpot.phone != null && !onAction) {
             if (actualSpot.phone.isDringDring) {
                 voice.StartDictationEngine();
                 actualSpot.phone.OnAllo();
             } else {
-                if (!arduino.OnCall && voice.actions.Count > 0) {
+                if (!(arduino.OnCall || takeOffPhone) && voice.actions.Count > 0) {
                     onAction = true;
                     voice.CloseDictationEngine();
                     actionsManager.ExecuteActions(voice.actions);
@@ -50,7 +67,32 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         } else if (actualSpot.phone == null && !onAction && actionsManager.actionsDone.Count > 0) {
+            onAction = true;
             actionsManager.GoBackToBeginning();
+        }
+
+        if (takeOffPhone) {
+            if (Input.anyKeyDown) {
+                foreach (char c in Input.inputString) {
+                    if (c == '\b') // has backspace/delete been pressed?
+                    {
+                        if (PhoneManager.instance.gt.Length != 0)
+                            PhoneManager.instance.gt = PhoneManager.instance.gt.Substring(0, PhoneManager.instance.gt.Length - 1);
+                    } else
+                        PhoneManager.instance.gt += c;
+                }
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            takeOffPhone = !takeOffPhone;
+            PhoneManager.instance.gt = "";
+            Debug.LogWarning("// " + (takeOffPhone ? "Décrocher" : "Raccrocher"));
+            if (takeOffPhone) {
+                Debug.Log("Please type a phone number");
+            } else {
+                voice.CloseDictationEngine();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Z)) {
@@ -82,6 +124,8 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    #endregion
+
     public void WorkDone() {
         if (actualSpot == null) { return; }
         onAction = false;
@@ -107,6 +151,7 @@ public class PlayerController : MonoBehaviour {
     public Coroutine MoveToSpot(MoveSpot spot) {
         if (moveRoutine != null) { StopCoroutine(moveRoutine); }
         nextSpot = spot;
+        if (onLeaveSpot != null) { onLeaveSpot(actualSpot); }
         moveRoutine = StartCoroutine(IMoveTo(spot, speed));
         return moveRoutine;
     }
@@ -125,10 +170,56 @@ public class PlayerController : MonoBehaviour {
             }
             yield return new WaitForEndOfFrame();
         }
-        onArrivedSpot(spot);
+        if (onArrivedSpot != null) { onArrivedSpot(spot); }
         animatorFront.SetTrigger("isWalking");
         animatorBack.SetTrigger("isWalking");
         oneTime = false;
+    }
+
+    public void UpdateBackToOrigin() {
+        if (backToOrigin && lastSpots.Count > 0) {
+            if (!inMovementBack) {
+                SetRotation(DirectionBetweenPoints(actualSpot, lastSpots[0]));
+                MoveToSpot(lastSpots[0]);
+                inMovementBack = true;
+            }
+        } else if (backToOrigin) {
+            SetRotation(orientation.Inverse());
+            ResetGoingBackToOrigin();
+        }
+    }
+
+    public void GoBackToOrigin() {
+        onAction = true;
+        backToOrigin = true;
+        onArrivedSpot += OnArrivedSpotWhileBackwarding;
+        onLeaveSpot -= AddSpotToHistory;
+    }
+
+    public void ResetGoingBackToOrigin() {
+        backToOrigin = false;
+        onAction = false;
+        onArrivedSpot -= OnArrivedSpotWhileBackwarding;
+        onLeaveSpot += AddSpotToHistory;
+    }
+
+    private void OnArrivedSpotWhileBackwarding(MoveSpot spot) {
+        inMovementBack = false;
+        lastSpots.RemoveAt(0);
+    }
+
+    private void AddSpotToHistory(MoveSpot spot) {
+        lastSpots.Insert(0, spot);
+    }
+
+    private Tools.Directions DirectionBetweenPoints(MoveSpot start, MoveSpot end) {
+        for (int i = 0; i < start.spotDirections.Count; i++) {
+            if (start.spotDirections[i] == end) {
+                return (Tools.Directions)i;
+            }
+        }
+        Debug.LogWarning("No connection between spot, returning \"UP\"");
+        return Tools.Directions.UP;
     }
 
     public void OnPhonePos(Phone phone)

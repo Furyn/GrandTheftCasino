@@ -74,10 +74,12 @@ public class RecognitionVoice : MonoBehaviour {
     private struct ActionsOrdered {
         public Action_Voleur action;
         public int index;
+        public string word;
 
-        public ActionsOrdered(Action_Voleur _action, int _index) {
+        public ActionsOrdered(Action_Voleur _action, int _index, string _word) {
             action = _action;
             index = _index;
+            word = _word;
         }
     }
 
@@ -86,14 +88,22 @@ public class RecognitionVoice : MonoBehaviour {
         List<ActionsOrdered> toDo = new List<ActionsOrdered>();
         for (int i = 0; i < orders.Length; i++) {
             for (int j = 0; j < orders[i].words.Count; j++) {
-                int index = text.IndexOf(orders[i].words[j]);
+                int index = text.LastIndexOf(orders[i].words[j]);
                 if (index != -1) {
                     if (orders[i].type == OrderType.CANCEL) {
                         actions.Clear();
                         continue;
                     }
                     //actions.Add(orders[i].action);
-                    toDo.Add(new ActionsOrdered(orders[i].action, index));
+                    int deleteLength = 0;
+                    for (int l = 0; l < toDo.Count; l++) {
+                        if (toDo[l].index <= index) {
+                            deleteLength += toDo[l].word.Length;
+                        }
+                    }
+                    Debug.Log("Actions : " + orders[i].action + " Index : " + (index + deleteLength) + " Leftover : " + text.Substring(0, index) + text.Substring(index + orders[i].words[j].Length));
+                    toDo.Add(new ActionsOrdered(orders[i].action, index + deleteLength, orders[i].words[j]));
+                    //deleteLength += orders[i].words[j].Length;
                     text = text.Substring(0, index) + text.Substring(index + orders[i].words[j].Length);
                     i = 0;
                     break;
@@ -121,8 +131,12 @@ public class RecognitionVoice : MonoBehaviour {
             case DictationCompletionCause.UnknownError:
             case DictationCompletionCause.AudioQualityFailure:
             case DictationCompletionCause.MicrophoneUnavailable:
+                Debug.LogError("Dictation error !");
+                CloseDictationEngine();
+                break;
             case DictationCompletionCause.NetworkFailure:
-                // Error
+                Debug.LogError("Dictation error !");
+                Debug.LogWarning("You're not connected to internet");
                 CloseDictationEngine();
                 break;
         }

@@ -7,24 +7,16 @@ public class TimeAction : Action_Voleur {
     public float timeToWait;
 
     override public void PerformAction(PlayerController player, bool reverse = false) {
-        actionDone = false;
+        done = false;
         player.StartCoroutine(WaitCoroutine());
     }
 
-    override public void PerformActionBackward(PlayerController player) {
-        PerformAction(player);
+    override public bool CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
+        return true;
     }
 
     IEnumerator WaitCoroutine() {
         yield return new WaitForSeconds(timeToWait);
-        actionDone = true;
-    }
-
-    override public void CheckIfActionIsPossible(PlayerController player, bool reverse = false) {
-        canBePerformed = true;
-    }
-
-    override public void CheckIfBackwardActionIsPossible(PlayerController player) {
-        canBePerformed = true;
+        done = true;
     }
 }

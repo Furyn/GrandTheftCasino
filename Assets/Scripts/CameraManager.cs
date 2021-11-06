@@ -97,12 +97,12 @@ public class CameraManager : MonoBehaviour
     {
         tvStatic.SetActive(true);
         Invoke("TurnStaticOff", .25f);
-        Debug.Log("Fonction faite");
+        //Debug.Log("Fonction faite");
     }
 
     private void TurnStaticOff()
     {
-        Debug.Log("Ca fait 5");
+        //Debug.Log("Ca fait 5");
         tvStatic.SetActive(false);
     }
 

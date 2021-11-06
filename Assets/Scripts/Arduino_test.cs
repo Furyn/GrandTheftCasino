@@ -39,6 +39,7 @@ public class Arduino_test : MonoBehaviour
             if (data == "STOP")
             {
                 OnCall = false;
+                input_telephone = "";
             }
             else if (data == "ONCALL")
             {

@@ -38,32 +38,32 @@ public class PhoneManager : MonoBehaviour
 
     void Update()
     {
-        if (gt.Length == 3) // enter/return
+        if (!RecognitionVoice.instance.recording && gt.Length == 3) // enter/return
         {
             if (!onePhoneDringDring)
                 CallPhoneNumber(gt);
             gt = ("");
         }
 
-        if (!onePhoneDringDring && _audioSource.isPlaying)
-        {
-            if (_audioSource)
-            {
-                _audioSource.Stop();
-                _audioSource.clip = null;
+        if (_audioSource != null) {
+            if (!onePhoneDringDring && _audioSource.isPlaying) {
+                if (_audioSource) {
+                    _audioSource.Stop();
+                    _audioSource.clip = null;
+                }
             }
         }
 
-        foreach (char c in Input.inputString)
-        {
-            if (c == '\b') // has backspace/delete been pressed?
-            {
-                if (gt.Length != 0)
-                    gt = gt.Substring(0, gt.Length - 1);
-            }
-            else
-                gt += c;
-        }
+        //foreach (char c in Input.inputString)
+        //{
+        //    if (c == '\b') // has backspace/delete been pressed?
+        //    {
+        //        if (gt.Length != 0)
+        //            gt = gt.Substring(0, gt.Length - 1);
+        //    }
+        //    else
+        //        gt += c;
+        //}
     }
     public void CallPhoneNumber(string Number)
     {
@@ -111,7 +111,7 @@ public class PhoneManager : MonoBehaviour
             }
 
         }
-        Debug.Log("j'ai call le numero" + Number);
+        Debug.Log("Numero dials : " + Number);
     }
 
 
