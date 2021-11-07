@@ -32,7 +32,15 @@ public class CameraManager : MonoBehaviour
 
     public Arduino_test adruino;
 
-
+    private AudioSource _audioSource = null;
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+        if (!_audioSource)
+        {
+            Debug.LogError("You need an AudioSource for sounds");
+        }
+    }
 
     void Update()
     {
@@ -70,6 +78,8 @@ public class CameraManager : MonoBehaviour
         }
 
         cameras[actualCamera].enabled = true;
+        _audioSource.Stop();
+        _audioSource.Play();
     }
 
 
@@ -91,6 +101,8 @@ public class CameraManager : MonoBehaviour
         }
 
         cameras[actualCamera].enabled = true;
+        _audioSource.Stop();
+        _audioSource.Play();
     }
     
     private void TurnStaticOn()

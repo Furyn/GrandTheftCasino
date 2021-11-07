@@ -16,6 +16,7 @@ public class PhoneManager : MonoBehaviour
     public AudioClip[] soundWrongNumber;
     public AudioClip soundRinging;
     private AudioSource _audioSource = null;
+    private bool wrongNum;
     private int randomSound;
 
     private void Awake()
@@ -46,7 +47,7 @@ public class PhoneManager : MonoBehaviour
         }
 
         if (_audioSource != null) {
-            if (!onePhoneDringDring && _audioSource.isPlaying) {
+            if (!onePhoneDringDring && _audioSource.isPlaying && !wrongNum) {
                 if (_audioSource) {
                     _audioSource.Stop();
                     _audioSource.clip = null;
@@ -87,6 +88,7 @@ public class PhoneManager : MonoBehaviour
             {
                 if (_audioSource)
                 {
+                    wrongNum = true;
                     _audioSource.Stop();
                     _audioSource.clip = null;
                     _audioSource.clip = soundWrongNumber[randomSound];
@@ -97,12 +99,15 @@ public class PhoneManager : MonoBehaviour
                         rand = UnityEngine.Random.Range(0, soundWrongNumber.Length);
                     }
                     randomSound = rand;
+                    Debug.Log(_audioSource.clip);
                 }
             }
             else
             {
                 if (_audioSource)
                 {
+                    wrongNum = false;
+                    Debug.Log("fbejfbjkb");
                     _audioSource.Stop();
                     _audioSource.clip = null;
                     _audioSource.clip = soundRinging;

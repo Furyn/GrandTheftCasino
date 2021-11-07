@@ -16,14 +16,8 @@ public class Vision : MonoBehaviour
         {
             Debug.LogError("You need an AudioSource for sounds");
         }
-        else
-        {
-            _audioSource.clip = soundSeeRobber;
-        }
-
-        
-
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player") == true)
@@ -36,14 +30,20 @@ public class Vision : MonoBehaviour
                 {
                     Debug.Log("C4EST UN MUR");
                 }
+                else
+                {
+                    if (_audioSource)
+                    {
+                        _audioSource.Stop();
+                        _audioSource.clip = soundSeeRobber;
+                        _audioSource.Play();
+                    }
+                }
             }
             else
             {
                 // Game over
-                if (_audioSource)
-                {
-                    _audioSource.Play();
-                }
+
                 if (gameOverImage)
                 {
                     gameOverImage.gameObject.SetActive(true);
