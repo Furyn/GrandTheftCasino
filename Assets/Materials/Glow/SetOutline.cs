@@ -12,7 +12,7 @@ public class SetOutline : MonoBehaviour
 
     void Start()
     {
-        outlineMaterial = (Material)AssetDatabase.LoadAssetAtPath("Assets/Materials/Glow/outlineMat.mat", typeof(Material));
+        outlineMaterial = Resources.Load<Material>("outlineMat");
         outlineRenderer = CreateOutline(outlineMaterial, outlineScaleFactor, outlineColor);
     }
 
