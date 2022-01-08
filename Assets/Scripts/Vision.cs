@@ -10,6 +10,7 @@ public class Vision : MonoBehaviour
     public AudioClip soundSeeRobber;
     public Transform raycastPos;
     private AudioSource _audioSource = null;
+    [SerializeField] private RetryGame retry = null;
 
     private void Start()
     {
@@ -60,7 +61,9 @@ public class Vision : MonoBehaviour
                 img.color = new Color(1, 1, 1, i);
                 yield return null;
             }
-            
+
+            retry.gameOver = true;
+
         }
     }
 }
