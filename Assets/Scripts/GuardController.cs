@@ -18,6 +18,8 @@ public class GuardController : MonoBehaviour
     public AudioClip[] soundHangUpPhone;
     private AudioSource _audioSource = null;
     private int randomSound;
+    private Vector3 initPos;
+    private bool waitOneFrame = false;
 
     [SerializeField] private Animator animatorFront;
     [SerializeField] private Animator animatorBack;
@@ -25,6 +27,7 @@ public class GuardController : MonoBehaviour
     void Start()
     {
         phoneManager = FindObjectOfType<PhoneManager>();
+        initPos = transform.position;
         if (phoneManager == null)
         {
             Debug.LogError("No phone manager found");
@@ -45,6 +48,19 @@ public class GuardController : MonoBehaviour
 
     void Update()
     {
+        if (!onPhone && passPoint.Length > 0 && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+            {
+                index++;
+                if (index > passPoint.Length - 1 )
+                {
+                    index = 0;
+                }
+                agent.SetDestination(passPoint[index].position);
+            }
+        }
+
         if (onPhone)
         {
             timer_on_phone -= Time.deltaTime;
@@ -52,7 +68,15 @@ public class GuardController : MonoBehaviour
             {
                 onPhone = false;
                 timer_on_phone = 0f;
-                agent.SetDestination(passPoint[index].position);
+                if (passPoint.Length > 0)
+                {
+                    agent.SetDestination(passPoint[index].position);
+                }
+                else
+                {
+                    agent.SetDestination(initPos);
+                }
+                
             }
         }
         else
@@ -65,7 +89,8 @@ public class GuardController : MonoBehaviour
                     agent.SetDestination(phone.transform.position);
                     animatorFront.SetTrigger("isWalking");
                     animatorBack.SetTrigger("isWalking");
-                    if (agent.remainingDistance <= agent.stoppingDistance)
+                    waitOneFrame = !waitOneFrame;
+                    if (agent.remainingDistance <= agent.stoppingDistance && !waitOneFrame)
                     {
                         if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                         {

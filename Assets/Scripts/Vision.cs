@@ -8,7 +8,9 @@ public class Vision : MonoBehaviour
 
     public Image gameOverImage;
     public AudioClip soundSeeRobber;
+    public Transform raycastPos;
     private AudioSource _audioSource = null;
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -20,15 +22,14 @@ public class Vision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") == true)
+        if (other.CompareTag("Player") == true)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, other.transform.position, out hit))
+            if (Physics.Linecast(raycastPos.position, other.transform.position, out hit))
             {
-
                 if (!hit.collider.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("C4EST UN MUR");
+                    Debug.Log(hit.collider.gameObject.name);
                 }
                 else
                 {
@@ -37,19 +38,15 @@ public class Vision : MonoBehaviour
                         _audioSource.Stop();
                         _audioSource.clip = soundSeeRobber;
                         _audioSource.Play();
+
+                        // Game over
+                        if (gameOverImage)
+                        {
+                            gameOverImage.gameObject.SetActive(true);
+                            StartCoroutine(FadeImage(gameOverImage));
+                        }
                     }
                 }
-            }
-            else
-            {
-                // Game over
-
-                if (gameOverImage)
-                {
-                    gameOverImage.gameObject.SetActive(true);
-                    StartCoroutine(FadeImage(gameOverImage));
-                }
-
             }
         }
     }
