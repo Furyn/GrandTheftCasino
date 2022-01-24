@@ -18,7 +18,7 @@ public class ActionsManager : MonoBehaviour {
             actions[actualActionIndex].Reset();
             actualActionIndex++;
             if (actualActionIndex < actions.Count) {
-                PerformAction(actions[actualActionIndex]);
+                    PerformAction(actions[actualActionIndex]);
             } else {
                 player.WorkDone();
                 ResetManager();
@@ -67,6 +67,7 @@ public class ActionsManager : MonoBehaviour {
                     actionsDone.Add(actionToPerform);
                 }
             }
+            //Debug.Log("ALORS PEUT ETRE");
         } else {
             Debug.LogWarning("Impossibru");
             GoBackToBeginning();

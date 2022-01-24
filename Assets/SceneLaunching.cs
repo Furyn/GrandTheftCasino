@@ -9,7 +9,7 @@ public class SceneLaunching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("Baptiste LD");
         }

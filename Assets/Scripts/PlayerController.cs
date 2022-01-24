@@ -50,10 +50,6 @@ public class PlayerController : MonoBehaviour {
     private void Update() {
         UpdateBackToOrigin();
 
-        if (!onAction && lastSpots.Count > 0 && !inMovementBack) {
-            lastSpots.Clear();
-        }
-
         if (actualSpot.phone != null && !onAction) {
             if (actualSpot.phone.isDringDring) {
                 voice.StartDictationEngine();
@@ -67,8 +63,14 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         } else if (actualSpot.phone == null && !onAction && actionsManager.actionsDone.Count > 0) {
+            
             onAction = true;
             actionsManager.GoBackToBeginning();
+        }
+
+        if (!onAction && lastSpots.Count > 0 && !inMovementBack && actualSpot != null)
+        {
+            lastSpots.Clear();
         }
 
         if (takeOffPhone) {
@@ -177,6 +179,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void UpdateBackToOrigin() {
+        
         if (backToOrigin && lastSpots.Count > 0) {
             if (!inMovementBack) {
                 SetRotation(DirectionBetweenPoints(actualSpot, lastSpots[0]));
