@@ -10,7 +10,6 @@ public class Order : ScriptableObject {
     public Action_Voleur action;
 
     public void Initialize() {
-        Debug.LogWarning("// Ini " + this.name);
         words = new List<string>();
         string[] splitted = keywords.Split(',');
         for (int i = 0; i < splitted.Length; i++) {
@@ -27,7 +26,7 @@ public class Order : ScriptableObject {
         //int startIndex = sentence.IndexOf('[');
         int[] endIndexes = AllIndexOf(sentence, ']');
         List<List<string>> verbosed = new List<List<string>>();
-        if (startIndexes.Length <= 0 || endIndexes.Length <= 0) { output.Add(sentence); Debug.Log(sentence); return output; }
+        if (startIndexes.Length <= 0 || endIndexes.Length <= 0) { output.Add(sentence); return output; }
         for (int j = 0; j < startIndexes.Length; j++) {
             verbosed.Add(new List<string>());
             string brackets = sentence.Substring(startIndexes[j] + 1, endIndexes[j] - startIndexes[j] - 1);
@@ -52,7 +51,6 @@ public class Order : ScriptableObject {
                 //output[output.Count - 1] += sentence.Substring(startIndexes[verbIndex - 1], startIndexes[verbIndex]) + verbosed[verbIndex][j];
             }
             output[output.Count - 1] += sentence.Substring(endIndexes[endIndexes.Length - 1] + 1);
-            Debug.Log(output[output.Count - 1]);
 
             bool exit = false;
             int toUp = indexes.Count - 1;
