@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour {
             if (takeOffPhone) {
                 Debug.Log("Please type a phone number");
             } else {
-                voice.CloseDictationEngine();
+                //voice.CloseDictationEngine();
             }
         }
 
