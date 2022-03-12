@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WinCheck : MonoBehaviour
 {
 
-    public Image WinImage;
+    public RawImage WinImage;
     [SerializeField] private RetryGame retry = null;
     private void OnTriggerEnter(Collider other)
     {     
@@ -20,7 +20,7 @@ public class WinCheck : MonoBehaviour
         }          
     }
 
-    IEnumerator FadeImage(Image img)
+    IEnumerator FadeImage(RawImage img)
     {
         if (img)
         {

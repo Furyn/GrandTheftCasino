@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Vision : MonoBehaviour
 {
 
-    public Image gameOverImage;
+    public RawImage gameOverImage;
     public AudioClip soundSeeRobber;
     public Transform raycastPos;
     private AudioSource _audioSource = null;
@@ -52,7 +52,7 @@ public class Vision : MonoBehaviour
         }
     }
 
-    IEnumerator FadeImage(Image img)
+    IEnumerator FadeImage(RawImage img)
     {
         if(img)
         {

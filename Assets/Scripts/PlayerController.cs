@@ -277,6 +277,7 @@ public static class Tools {
     public delegate void Delegate<T>(T arg);
 
     public static Directions Inverse(this Directions direction) {
+        Debug.Log((Directions)(((int)direction + 2) % 4));
         return (Directions)(((int)direction + 2) % 4);
     }
 

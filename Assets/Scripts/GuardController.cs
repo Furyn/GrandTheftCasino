@@ -19,7 +19,9 @@ public class GuardController : MonoBehaviour
     private AudioSource _audioSource = null;
     private int randomSound;
     private Vector3 initPos;
+    public GameObject initPos2;
     private bool waitOneFrame = false;
+    public bool guardQUIFUCK = false;
 
     [SerializeField] private Animator animatorFront;
     [SerializeField] private Animator animatorBack;
@@ -48,6 +50,10 @@ public class GuardController : MonoBehaviour
 
     void Update()
     {
+        if (agent.remainingDistance <= agent.stoppingDistance && agent.hasPath)
+        {
+            transform.rotation = Quaternion.Euler(0,0,0);
+        }
         if (!onPhone && passPoint.Length > 0 && agent.remainingDistance <= agent.stoppingDistance)
         {
             if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
@@ -71,6 +77,10 @@ public class GuardController : MonoBehaviour
                 if (passPoint.Length > 0)
                 {
                     agent.SetDestination(passPoint[index].position);
+                }
+                else if(guardQUIFUCK)
+                {
+                    agent.SetDestination(initPos2.transform.position);
                 }
                 else
                 {
