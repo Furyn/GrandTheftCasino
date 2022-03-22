@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RotateBackward
   m_EditorClassIdentifier: 
   type: 1
-  keywords: Turn around,Retourne-toi,Demi-tour,demi tour
+  keywords: Turn around,Retourne-toi,Demi-tour,demi tour,Turn round
   words:
   - turn around
   - retourne-toi

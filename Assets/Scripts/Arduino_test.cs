@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Uduino;
+using UnityEngine.SceneManagement;
 
 public class Arduino_test : MonoBehaviour
 {
@@ -65,7 +66,15 @@ public class Arduino_test : MonoBehaviour
             {
                 input_telephone += data;
                 PhoneManager.instance.gt = input_telephone;
-                if (input_telephone.Length >= 3) { input_telephone = ""; }
+                if (input_telephone.Length >= 3) { 
+                    
+                    if (input_telephone == "999")
+                    {
+                        Debug.Log("RETRY");
+                        SceneManager.LoadScene(1);
+                    }
+                    input_telephone = "";
+                }
             }
 
             UduinoManager.Instance.sendCommand("ref");
