@@ -35,8 +35,6 @@ public class RecognitionVoice : MonoBehaviour {
         for (int i = 0; i < orders.Length; i++) {
             orders[i].Initialize();
         }
-
-        StartDictationEngine();
     }
 
     private void OnApplicationQuit() {

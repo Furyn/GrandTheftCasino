@@ -70,8 +70,11 @@ public class Arduino_test : MonoBehaviour
                     
                     if (input_telephone == "999")
                     {
-                        Debug.Log("RETRY");
                         SceneManager.LoadScene(1);
+                    }
+                    if (input_telephone == "888")
+                    {
+                        SceneManager.LoadScene(0);
                     }
                     input_telephone = "";
                 }
